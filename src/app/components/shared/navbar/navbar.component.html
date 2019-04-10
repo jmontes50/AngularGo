@@ -1,0 +1,95 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark red lighten-1" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">SysQaway</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+       <li class="nav-item">
+        <a class="nav-link waves-light" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>Login</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link waves-light" *ngIf="_isLoggedIn | async" mdbWavesEffect>Alertas<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" *ngIf="_isLoggedIn | async" mdbWavesEffect>Chat</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" *ngIf="_isLoggedIn | async" mdbWavesEffect>Acerca de</a>
+      </li>
+     
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Lista<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+      </li>
+      <li class="nav-item avatar dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+</mdb-navbar>
+
+
+ <!-- Modal-  -->
+
+ <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+ aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header text-center">
+       <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <form [formGroup]="form" (ngSubmit)="login()">
+     <div class="modal-body mx-3">
+       <div class="md-form mb-5">
+         <i class="fas fa-envelope prefix grey-text"></i>
+         <input type="email" id="defaultForm-email" formControlName="usuario" class="form-control validate"
+           mdbInput>
+         <label data-error="wrong" data-success="right" for="defaultForm-email">Usuario</label>
+       </div>
+
+       <div class="md-form mb-4">
+         <i class="fas fa-lock prefix grey-text"></i>
+         <input type="password" id="defaultForm-pass" formControlName="password" class="form-control validate"
+           mdbInput>
+         <label data-error="wrong" data-success="right" for="defaultForm-pass">Contraseña</label>
+       </div>
+
+     </div>
+     <div class="modal-footer d-flex justify-content-center">
+       <button mdbBtn color="default" class="waves-light" (click)="frame.hide()" mdbWavesEffect>Ingresa</button>
+     </div>
+    </form>
+   </div>
+ </div>
+</div>
