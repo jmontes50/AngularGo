@@ -7,7 +7,8 @@
         </div>
         <div class="card-body">
           <agm-map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude" style="height: 400px" (mapClick)="placeMarker($event)">
-            <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="frame.show()"></agm-marker>
+          <!-- <agm-map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude" style="height: 400px" (mapClick)="addMarker($event.coords.lat, $event.coords.lng)"> -->
+            <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="frame.show();isLocation();"></agm-marker>
           </agm-map>
         </div>
       </div>
@@ -86,6 +87,8 @@
 <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
   (click)="frame.show()" mdbWavesEffect>Launch Modal</button>
 
+
+  <!-- Modal -->
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-notify modal-warning" role="document">
@@ -93,7 +96,9 @@
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header">
-        <p class="heading lead">Modal Warning</p>
+        
+         
+        <span class="heading lead"><i class="fas fa-exclamation-triangle fa-fw"></i> Alerta enviada</span>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true" class="white-text">&times;</span>
@@ -102,19 +107,21 @@
 
       <!--Body-->
       <div class="modal-body">
-        <div class="text-center">
-          <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad consequatur
-            in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
-        </div>
+          <div class="list-group">
+              <a href="#" class="list-group-item disabled waves-light" mdbWavesEffect>Fecha:</a>
+              <a href="#" class="list-group-item disabled waves-light" mdbWavesEffect>Descripción:</a>
+              <a href="#" class="list-group-item disabled waves-light" mdbWavesEffect>Informante:</a>
+              <a href="#" class="list-group-item disabled waves-light" mdbWavesEffect>Atención:</a>
+              <a href="#" class="list-group-item disabled waves-light" mdbWavesEffect>Ubicado en:</a>
+            </div>
       </div>
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect>Get it now
-          <i class="far fa-gem ml-1"></i>
+        <a type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect>Ir a Detalle
+          <!-- <i class="far fa-gem ml-1"></i> -->
         </a>
-        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">No, thanks</a>
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">Cerrar</a>
       </div>
     </div>
     <!--/.Content-->

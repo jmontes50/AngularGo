@@ -17,7 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import {GoogleMapsAPIWrapper} from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent],
   exports: [ NavbarComponent ]
 })
