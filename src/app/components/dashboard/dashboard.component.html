@@ -8,7 +8,8 @@
         <div class="card-body">
           <agm-map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude" style="height: 400px" (mapClick)="placeMarker($event)">
           <!-- <agm-map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude" style="height: 400px" (mapClick)="addMarker($event.coords.lat, $event.coords.lng)"> -->
-            <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="frame.show();isLocation();"></agm-marker>
+            <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="frame.show();"></agm-marker>
+            <agm-polygon [paths]="coords"></agm-polygon>
           </agm-map>
         </div>
       </div>

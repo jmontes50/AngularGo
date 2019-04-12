@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {GoogleMapsAPIWrapper} from '@agm/core';
-
+import {MapsAPILoader} from '@agm/core';
+declare const google;
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +8,7 @@ import {GoogleMapsAPIWrapper} from '@agm/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  polygon:any;
   longitude = -71.5470836;
   latitude = -16.4147918;
   zoom=12;  
@@ -38,10 +38,37 @@ export class DashboardComponent implements OnInit {
     this.markers.push({ latitude: lat, longitude: lng });
   }
 
-  constructor(private _sMaps:GoogleMapsAPIWrapper) { }
+  punto = {
+    lat:-16.4147918,
+    lng:-71.5470836
+  }
+ 
+
+
+  constructor(private _sMaps:MapsAPILoader) { }
 
   ngOnInit() {
+    this._sMaps.load().then(()=>{
+      this.polygon = new google.maps.Polygon({paths:this.coords});
+    });
+    const latLng = new google.maps.LatLng(this.punto);
+    if(google.maps.geometry.poly.containsLocation(latLng, this.polygon)){
+      console.log("exito")
+    }else{
+      console.log("mas exito pero falta entenderlo")
+    }
+
   }
+
+  // ngAfterViewInit(): void {
+  //   // Load google maps script after view init
+  //   const DSLScript = document.createElement('script');
+  //   DSLScript.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCstdkX8vjyX_IGonfj1u0ZIZ0h6vAq7XA'; // replace by your API key
+  //   DSLScript.type = 'text/javascript';
+  //   document.body.appendChild(DSLScript);
+  //   // document.body.removeChild(DSLScript);
+  // }
+
   //Diagrama de Lineas
   public chartType: string = 'line';
 
@@ -72,17 +99,7 @@ export class DashboardComponent implements OnInit {
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
 
-  isLocation(){
-    
-    // this._sMaps.createPolygon({paths:this.coords}).then((response)=>{
-    //   console.log(response.getPath());
-      
-    // })
-    let algo = this._sMaps.createPolygon({paths:this.coords});
-    console.log(algo);
-
-  };
-    
+  
     
   
 }

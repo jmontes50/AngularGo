@@ -37,6 +37,7 @@ import {GoogleMapsAPIWrapper} from '@agm/core';
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: environment.apiKeyGmaps,
+      libraries:['geometry']
       
     }),
     RouterModule.forRoot([]),
