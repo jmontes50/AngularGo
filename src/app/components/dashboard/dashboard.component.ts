@@ -13,13 +13,13 @@ export class DashboardComponent implements OnInit {
   latitude = -16.4147918;
   zoom=12;  
 
-  coords: [
+  coords = [
       
-    {lat: -71.5365913,lng:-16.3994736 },
-    {lat: -71.5359741,lng:-16.3979915 },
-    {lat: -71.5370314,lng:-16.397621 },
-    {lat: -71.5376271,lng: -16.3990928 },
-    {lat: -71.5365806,lng:-16.3994736 }
+    {lng: -71.5365913,lat:-16.3994736 },
+    {lng: -71.5359741,lat:-16.3979915 },
+    {lng: -71.5370314,lat:-16.397621 },
+    {lng: -71.5376271,lat: -16.3990928 },
+    {lng: -71.5365806,lat:-16.3994736 }
 
   ]
 
@@ -39,8 +39,8 @@ export class DashboardComponent implements OnInit {
   }
 
   punto = {
-    lat:-16.4147918,
-    lng:-71.5470836
+    lat:-16.3988766,
+    lng:-71.5369037
   }
  
 
@@ -48,15 +48,12 @@ export class DashboardComponent implements OnInit {
   constructor(private _sMaps:MapsAPILoader) { }
 
   ngOnInit() {
-    this._sMaps.load().then(()=>{
-      this.polygon = new google.maps.Polygon({paths:this.coords});
-    });
+    this.polygon = new google.maps.Polygon({paths:this.coords});
+    
     const latLng = new google.maps.LatLng(this.punto);
-    if(google.maps.geometry.poly.containsLocation(latLng, this.polygon)){
-      console.log("exito")
-    }else{
-      console.log("mas exito pero falta entenderlo")
-    }
+    let prueba = google.maps.geometry.poly.containsLocation(latLng, this.polygon)
+
+    console.log(prueba);
 
   }
 
